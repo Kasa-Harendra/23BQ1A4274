@@ -72,5 +72,19 @@
 
   ```relationship(users, backpopulates="notifications")```
   This is done to directly access the notifications of the users using student ID directly from the user record.
+  This allows faster retreival of notifications
 
 # Stage 3
+- The query shown is accurate but it is extremely slow because the traversing 5000000 notifications while matching the student_ID
+  and getting the records and then sorting them again is extremely time taking.
+
+- I suggest backpopulating the students.notifications field in order to directly acess the notifications from the user ID itself potentially eliminating the time taken to traverse whole notifications table and fecting the records directly.
+One other alternative is **indexing the student_Id** in the notifications table
+
+- Yes **indexing the student ID** allows directly lokking up all the records belonging to the student. ut adding indexes for every column adds overhead during insertion, deletion, updation.
+
+- Query to get all the placement notifications in the past 7 days.
+  ``` MySQL
+  SELECT * FROM notifications
+  WHERE notificationType = "Placement" AND created_at >= DATE_SUM(NOW(), INTERVAL 7 DAY);
+  ```
