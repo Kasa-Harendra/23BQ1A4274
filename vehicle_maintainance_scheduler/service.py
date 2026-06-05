@@ -4,7 +4,7 @@ class VehicleService:
     def __init__(self):
         Log("backend", "info", "service", "Initilializing VehicleService")
         
-    @classmethod
+    @staticmethod
     def knapsack(tasks, capacity):
         n = len(tasks)
         dp = [[0] * (capacity + 1) for _ in range(n + 1)]
@@ -38,7 +38,7 @@ class VehicleService:
         }
     
     @staticmethod    
-    def computer_per_depo(self, vehicles_data, depots_data):
+    def computer_per_depo(vehicles_data, depots_data):
         Log("backend", "info", "service", "Computing per depo")
         tasks = vehicles_data["vehicles"]
 
@@ -46,7 +46,7 @@ class VehicleService:
             depot_id = depot["ID"]
             capacity = depot["MechanicHours"]
 
-            result = self.knapsack(tasks, capacity)
+            result = VehicleService.knapsack(tasks, capacity)
 
             print(f"\n=== DEPOT {depot_id} ===")
             print("Capacity:", capacity)
@@ -58,7 +58,7 @@ class VehicleService:
             print(task["TaskID"])
         
     @staticmethod
-    def compute_overall(self, vehicles_data, depots_data):
+    def compute_overall(vehicles_data, depots_data):
         Log("backend", "info", "service", "Computing overall")
         tasks = vehicles_data["vehicles"]
 
@@ -67,7 +67,7 @@ class VehicleService:
             for depot in depots_data["depots"]
         )
 
-        result = self.knapsack(tasks, total_capacity)
+        result = VehicleService.knapsack(tasks, total_capacity)
 
         print("=== OVERALL OPTIMIZATION ===")
         print("Capacity:", total_capacity)
