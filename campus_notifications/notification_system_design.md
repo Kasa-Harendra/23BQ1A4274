@@ -32,12 +32,12 @@
   **Request Header** 
   ```Authorization: Bearer <token>```
 
-  **Request Response**
+  **Response**
   ```
   {
-      "Id": "6dcsa39-37tejj2-23t7cb",
-      "Type": "Farewell",
-      "Message": "Welcome All",
+      "id": "a2138sa-783bj4-42h3jb",
+      "notification_id": "6dcsa39-37tejj2-23t7cb",
+      "student_id": "32678-qj3j13-21bnbj"
       "is_viewed": true
   }
   ```
